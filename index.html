@@ -1,0 +1,7578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+
+<meta name="theme-color" content="#0B2A4A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Adya Car Care">
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+
+<title>Adya Car Care</title>
+
+<style>
+:root{
+  --navy:#0B2A4A;
+  --navy2:#123E69;
+  --blue:#1976D2;
+  --blue2:#2E8DE6;
+  --red:#D62828;
+  --red2:#EF3E36;
+
+  --bg:#EEF3F8;
+  --surface:#FFFFFF;
+  --surface2:#F7F9FC;
+  --border:#D8E1EA;
+
+  --text:#17212B;
+  --muted:#657483;
+
+  --good:#238B57;
+  --goodbg:#E9F7EF;
+
+  --warn:#D68A00;
+  --warnbg:#FFF6DD;
+
+  --danger:#C62A2A;
+  --dangerbg:#FDECEC;
+
+  --shadow:0 3px 12px rgba(22,45,70,.08);
+  --shadow2:0 8px 24px rgba(10,42,74,.14);
+
+  --radius:14px;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  min-height:100%;
+}
+
+body{
+  margin:0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #E7EEF6 0,
+      #F4F7FA 240px,
+      var(--bg) 100%
+    );
+
+  color:var(--text);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing:antialiased;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+#app{
+  max-width:680px;
+  margin:auto;
+
+  min-height:100vh;
+
+  padding-bottom:
+    calc(
+      92px +
+      env(safe-area-inset-bottom)
+    );
+}
+
+
+/* HEADER */
+
+.topbar{
+  position:sticky;
+  top:0;
+
+  z-index:30;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--navy),
+      var(--navy2)
+    );
+
+  color:white;
+
+  padding:
+    calc(
+      14px +
+      env(safe-area-inset-top)
+    )
+    16px
+    13px;
+
+  box-shadow:
+    0 4px 14px
+    rgba(0,0,0,.14);
+}
+
+.brand{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-start;
+
+  gap:10px;
+}
+
+.brand-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--red2),
+      var(--red)
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:900;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(255,255,255,.15);
+}
+
+.brand h1{
+  margin:0;
+  font-size:21px;
+}
+
+.sub{
+  font-size:11.5px;
+
+  color:
+    rgba(255,255,255,.76);
+
+  margin-top:3px;
+}
+
+.status{
+  font-size:10px;
+  font-weight:700;
+
+  padding:6px 8px;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  border:
+    1px solid
+    rgba(255,255,255,.18);
+
+  white-space:nowrap;
+}
+
+.status.good{
+  color:#D7FFE5;
+}
+
+.back{
+  background:none;
+  border:0;
+
+  color:
+    rgba(255,255,255,.85);
+
+  padding:0 0 10px;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+
+/* HERO */
+
+.hero{
+  background:
+    linear-gradient(
+      120deg,
+      var(--navy),
+      #174E82 68%,
+      var(--blue)
+    );
+
+  color:white;
+
+  padding:
+    22px 16px
+    30px;
+}
+
+.hero .eyebrow{
+  font-size:11px;
+  font-weight:800;
+
+  text-transform:uppercase;
+  letter-spacing:.1em;
+
+  color:
+    rgba(255,255,255,.68);
+}
+
+.hero h2{
+  margin:5px 0 0;
+
+  font-size:23px;
+  line-height:1.18;
+}
+
+.hero p{
+  margin:7px 0 0;
+
+  color:
+    rgba(255,255,255,.8);
+
+  font-size:12.5px;
+
+  line-height:1.5;
+}
+
+
+/* SEARCH */
+
+.search-panel{
+  margin:
+    -17px 16px
+    14px;
+
+  position:relative;
+  z-index:4;
+}
+
+.search-wrap{
+  background:white;
+
+  border-radius:14px;
+
+  padding:5px;
+
+  box-shadow:var(--shadow2);
+}
+
+.search-input{
+  width:100%;
+
+  border:0;
+  outline:0;
+
+  padding:
+    13px 14px;
+
+  border-radius:10px;
+
+  font-size:15px;
+
+  color:var(--text);
+}
+
+
+/* MAIN */
+
+main{
+  padding:
+    14px 16px
+    28px;
+}
+
+.page-title{
+  margin:0;
+
+  color:var(--navy);
+
+  font-size:22px;
+  font-weight:850;
+}
+
+.page-sub{
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.page-title-row{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:10px;
+
+  margin-bottom:14px;
+}
+
+.count{
+  border-radius:20px;
+
+  background:#DFEBF8;
+
+  color:var(--navy);
+
+  padding:
+    6px 10px;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+
+/* STATS */
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:9px;
+
+  margin-bottom:18px;
+}
+
+.stat{
+  background:white;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:14px;
+
+  padding:12px;
+
+  box-shadow:var(--shadow);
+}
+
+.stat:nth-child(1){
+  border-top:
+    4px solid
+    var(--blue);
+}
+
+.stat:nth-child(2){
+  border-top:
+    4px solid
+    var(--red);
+}
+
+.stat:nth-child(3){
+  border-top:
+    4px solid
+    #25A36F;
+}
+
+.stat .n{
+  color:var(--navy);
+
+  font-size:24px;
+  font-weight:850;
+}
+
+.stat .l{
+  color:var(--muted);
+
+  font-size:10.5px;
+}
+
+
+/* QUICK BUTTONS */
+
+.quick{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:10px;
+
+  margin-bottom:18px;
+}
+
+.quick button{
+  background:white;
+
+  color:var(--navy);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:14px;
+
+  padding:15px;
+
+  text-align:left;
+
+  font-weight:800;
+
+  box-shadow:var(--shadow);
+}
+
+.quick .qsub{
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  font-weight:500;
+
+  line-height:1.35;
+}
+
+
+/* CARDS */
+
+.section{
+  color:#718090;
+
+  font-size:11.5px;
+  font-weight:850;
+
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+
+  margin:
+    20px 0
+    9px;
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+}
+
+.card,
+.record,
+.detail,
+.panel{
+  background:white;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius);
+
+  box-shadow:
+    var(--shadow);
+}
+
+.card{
+  padding:
+    13px 14px;
+
+  margin-bottom:10px;
+}
+
+.card.accent{
+  border-left:
+    4px solid
+    var(--blue);
+}
+
+.row{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  gap:10px;
+}
+
+.name{
+  color:var(--navy);
+
+  font-weight:800;
+
+  font-size:15px;
+}
+
+.meta{
+  color:var(--muted);
+
+  font-size:12.5px;
+
+  margin-top:3px;
+}
+
+
+/* PLATE */
+
+.plate{
+  background:#FAFAF7;
+
+  color:var(--text);
+
+  border:
+    1.5px solid
+    #D4D2C9;
+
+  border-radius:6px;
+
+  padding:
+    5px 9px
+    4px;
+
+  font:
+    850 13px
+    "Courier New",
+    monospace;
+
+  letter-spacing:.08em;
+
+  display:inline-flex;
+
+  flex-direction:column;
+  align-items:center;
+}
+
+.plate .vic{
+  font-size:6px;
+
+  color:#124F91;
+
+  margin-top:2px;
+}
+
+.plate.lg{
+  font-size:20px;
+
+  padding:
+    8px 16px
+    6px;
+}
+
+.plate-row{
+  display:flex;
+
+  gap:6px;
+
+  flex-wrap:wrap;
+
+  margin-top:9px;
+}
+
+
+/* BUTTONS */
+
+.btn{
+  width:100%;
+
+  display:inline-flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:6px;
+
+  border:0;
+
+  border-radius:11px;
+
+  padding:
+    12px 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
+
+  color:white;
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.btn.red{
+  background:
+    linear-gradient(
+      135deg,
+      var(--red2),
+      var(--red)
+    );
+}
+
+.btn.secondary{
+  background:white;
+
+  color:var(--navy);
+
+  border:
+    1px solid
+    var(--border);
+}
+
+.btn.danger{
+  background:
+    var(--dangerbg);
+
+  color:
+    var(--danger);
+
+  border:
+    1px solid
+    #F4C5C5;
+}
+
+.btn-row{
+  display:flex;
+
+  gap:8px;
+
+  margin-top:14px;
+}
+
+.btn-row .btn{
+  flex:1;
+}
+
+
+/* FLOATING ADD */
+
+.fab{
+  position:fixed;
+
+  right:
+    max(
+      20px,
+      calc(
+        (100vw - 680px)/2
+        + 20px
+      )
+    );
+
+  bottom:
+    calc(
+      78px +
+      env(safe-area-inset-bottom)
+    );
+
+  z-index:35;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  border:0;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--red2),
+      var(--red)
+    );
+
+  color:white;
+
+  font-size:30px;
+  font-weight:800;
+
+  box-shadow:
+    0 8px 20px
+    rgba(198,42,42,.3);
+}
+
+
+/* BOTTOM TABS */
+
+.tabbar{
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  z-index:32;
+
+  background:
+    rgba(255,255,255,.98);
+
+  border-top:
+    1px solid
+    var(--border);
+
+  padding-bottom:
+    env(safe-area-inset-bottom);
+
+  box-shadow:
+    0 -4px 16px
+    rgba(17,42,67,.08);
+}
+
+.tabs{
+  max-width:680px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+}
+
+.tab{
+  border:0;
+  background:none;
+
+  color:#738292;
+
+  padding:
+    9px 2px
+    8px;
+
+  font-size:10px;
+  font-weight:800;
+
+  display:flex;
+
+  flex-direction:column;
+  align-items:center;
+
+  gap:2px;
+}
+
+.tab .ic{
+  font-size:18px;
+}
+
+.tab.active{
+  color:var(--blue);
+}
+
+.tab.active.redactive{
+  color:var(--red);
+}
+
+
+/* DETAILS */
+
+.detail{
+  padding:16px;
+
+  margin-bottom:16px;
+
+  border-top:
+    4px solid
+    var(--blue);
+}
+
+.detail h2{
+  margin:
+    0 0 4px;
+
+  color:var(--navy);
+
+  font-size:20px;
+}
+
+.chips{
+  display:flex;
+
+  gap:6px;
+
+  flex-wrap:wrap;
+
+  margin-top:10px;
+}
+
+.chip{
+  background:#EDF4FB;
+
+  border:
+    1px solid
+    #D5E6F6;
+
+  color:var(--navy);
+
+  border-radius:20px;
+
+  padding:
+    6px 11px;
+
+  font-size:12px;
+}
+
+.chip a{
+  text-decoration:none;
+}
+
+
+/* VEHICLES */
+
+.vehicle{
+  background:white;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-left:
+    4px solid
+    var(--red);
+
+  border-radius:
+    var(--radius);
+
+  padding:14px;
+
+  margin-bottom:10px;
+
+  box-shadow:var(--shadow);
+}
+
+.vinfo{
+  color:var(--muted);
+
+  font-size:13px;
+
+  margin-top:8px;
+}
+
+.vinfo b{
+  color:var(--navy);
+}
+
+
+/* RECORDS */
+
+.record{
+  padding:14px;
+
+  margin-bottom:11px;
+
+  border-left:
+    4px solid
+    var(--blue);
+}
+
+.record-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.rdate{
+  color:var(--navy);
+
+  font-size:14px;
+  font-weight:850;
+}
+
+.rtype{
+  color:var(--muted);
+
+  font-size:12.5px;
+
+  margin-top:3px;
+}
+
+.badge{
+  font-size:10px;
+  font-weight:850;
+
+  padding:
+    4px 9px;
+
+  border-radius:20px;
+
+  text-transform:uppercase;
+}
+
+.paid{
+  background:var(--goodbg);
+  color:var(--good);
+}
+
+.partial{
+  background:var(--warnbg);
+  color:var(--warn);
+}
+
+.unpaid{
+  background:var(--dangerbg);
+  color:var(--danger);
+}
+
+.label{
+  color:var(--muted);
+
+  font-size:10.5px;
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  letter-spacing:.04em;
+
+  margin:
+    8px 0
+    2px;
+}
+
+.pending{
+  background:
+    var(--warnbg);
+
+  border:
+    1px solid
+    #F1D697;
+
+  border-radius:10px;
+
+  padding:
+    9px 11px;
+
+  margin-top:10px;
+
+  font-size:13px;
+}
+
+.actions{
+  display:flex;
+
+  gap:15px;
+
+  margin-top:11px;
+}
+
+.actions button{
+  border:0;
+
+  background:none;
+
+  padding:0;
+
+  color:var(--blue);
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.actions .del{
+  color:var(--danger);
+}
+
+
+/* FORMS */
+
+form{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+}
+
+.field label{
+  display:block;
+
+  color:#5C6D7D;
+
+  font-size:12px;
+  font-weight:800;
+
+  margin-bottom:6px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+
+  padding:12px;
+
+  border-radius:10px;
+
+  border:
+    1px solid
+    var(--border);
+
+  background:white;
+
+  color:var(--text);
+
+  outline:0;
+
+  font-size:14px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:
+    var(--blue);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(25,118,210,.1);
+}
+
+.field textarea{
+  min-height:75px;
+
+  resize:vertical;
+}
+
+.two{
+  display:flex;
+  gap:10px;
+}
+
+.two > .field{
+  flex:1;
+}
+
+.multi{
+  display:flex;
+
+  gap:8px;
+
+  margin-bottom:8px;
+}
+
+.multi input{
+  flex:1;
+}
+
+.iconbtn{
+  width:42px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:9px;
+
+  background:white;
+
+  color:var(--danger);
+
+  font-size:18px;
+}
+
+.addlink{
+  width:100%;
+
+  padding:9px;
+
+  border:
+    1px dashed
+    #A8BDD1;
+
+  background:#F8FBFE;
+
+  color:var(--blue);
+
+  border-radius:9px;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.divider{
+  height:1px;
+
+  background:var(--border);
+
+  margin:7px 0;
+}
+
+.fieldset{
+  color:var(--navy);
+
+  font-size:12px;
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+}
+
+.hint{
+  color:var(--muted);
+
+  font-size:11px;
+
+  margin-top:-7px;
+}
+
+
+/* DATA / BACKUP */
+
+.panel{
+  padding:16px;
+
+  margin-bottom:14px;
+}
+
+.panel h3{
+  margin:
+    0 0 6px;
+
+  color:var(--navy);
+
+  font-size:15px;
+}
+
+.panel p{
+  margin:
+    0 0 12px;
+
+  color:var(--muted);
+
+  font-size:12.5px;
+
+  line-height:1.55;
+}
+
+.notice{
+  padding:12px;
+
+  background:#EAF3FC;
+
+  border:
+    1px solid
+    #C8E0F7;
+
+  border-left:
+    4px solid
+    var(--blue);
+
+  border-radius:11px;
+
+  font-size:12.5px;
+
+  line-height:1.5;
+
+  margin-bottom:14px;
+}
+
+.notice.warn{
+  background:
+    var(--warnbg);
+
+  border-color:#F0D49B;
+
+  border-left-color:
+    var(--warn);
+}
+
+
+/* PHOTOS */
+
+.photos{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:8px;
+
+  margin-top:10px;
+}
+
+.photo{
+  position:relative;
+
+  aspect-ratio:1;
+
+  background:#E9EEF3;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:10px;
+
+  overflow:hidden;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+.photo .x{
+  position:absolute;
+
+  top:5px;
+  right:5px;
+
+  width:29px;
+  height:29px;
+
+  border-radius:50%;
+
+  border:0;
+
+  background:
+    rgba(20,25,30,.78);
+
+  color:white;
+
+  font-size:18px;
+}
+
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+
+  padding:
+    42px 20px;
+
+  color:var(--muted);
+}
+
+.empty .big{
+  color:var(--navy);
+
+  font-weight:800;
+
+  margin-bottom:6px;
+}
+
+.empty-icon{
+  width:56px;
+  height:56px;
+
+  margin:
+    0 auto
+    10px;
+
+  border-radius:50%;
+
+  background:#E4EDF6;
+
+  color:var(--blue);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:24px;
+}
+
+
+/* PHOTO MODAL */
+
+.modal{
+  position:fixed;
+
+  inset:0;
+
+  z-index:100;
+
+  background:
+    rgba(5,20,34,.94);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+}
+
+.modal img{
+  max-width:100%;
+  max-height:85vh;
+
+  border-radius:12px;
+}
+
+.modal-close{
+  position:absolute;
+
+  top:
+    calc(
+      18px +
+      env(safe-area-inset-top)
+    );
+
+  right:18px;
+
+  width:42px;
+  height:42px;
+
+  border-radius:50%;
+
+  border:0;
+
+  background:white;
+
+  color:var(--navy);
+
+  font-size:23px;
+}
+
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+
+  bottom:
+    calc(
+      92px +
+      env(safe-area-inset-bottom)
+    );
+
+  transform:
+    translateX(-50%);
+
+  z-index:80;
+
+  background:var(--navy);
+
+  color:white;
+
+  padding:
+    10px 15px;
+
+  border-radius:20px;
+
+  font-size:12.5px;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  box-shadow:var(--shadow2);
+}
+
+.toast.show{
+  opacity:1;
+}
+
+#importFile,
+#photoInput{
+  display:none;
+}
+
+@media(max-width:430px){
+
+  .two{
+    flex-direction:column;
+  }
+
+  .stats{
+    gap:7px;
+  }
+
+  .stat{
+    padding:10px;
+  }
+
+  .stat .n{
+    font-size:21px;
+  }
+
+  .btn-row{
+    flex-direction:column;
+  }
+
+  .photos{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<div
+  id="toast"
+  class="toast"
+></div>
+
+<input
+  id="importFile"
+  type="file"
+  accept="application/json,.json"
+>
+
+<input
+  id="photoInput"
+  type="file"
+  accept="image/*"
+  multiple
+>
+
+
+<script>
+"use strict";
+
+
+/* ============================================================
+   ADYA CAR CARE iPHONE DATABASE
+
+   The WORKING database is stored in IndexedDB on the iPhone.
+
+   Customers
+   Vehicles
+   Jobs
+   Photos
+   Settings
+
+   Manual backup converts everything, including photos,
+   into one JSON file that can be sent to Google Drive.
+============================================================ */
+
+const DB_NAME =
+  "adyaCarCareDB";
+
+const DB_VERSION =
+  1;
+
+let db = null;
+
+
+let state = {
+  view:"home",
+  params:{}
+};
+
+
+const app =
+  document.getElementById(
+    "app"
+  );
+
+
+const SERVICE_TYPES = [
+
+  "Oil change",
+
+  "Full service",
+
+  "Logbook service",
+
+  "Brake service",
+
+  "Tyre replacement",
+
+  "Wheel alignment",
+
+  "Wheel balancing",
+
+  "Battery replacement",
+
+  "Air conditioning service",
+
+  "Roadworthy certificate (RWC)",
+
+  "Diagnostic check",
+
+  "Suspension work",
+
+  "Steering repair",
+
+  "Engine repair",
+
+  "Transmission service",
+
+  "Cooling system",
+
+  "Electrical repair",
+
+  "Timing belt / chain",
+
+  "Pre-purchase inspection",
+
+  "Other"
+];
+
+
+/* ============================================================
+   HELPERS
+============================================================ */
+
+function uid(){
+
+  if(
+    window.crypto &&
+    crypto.randomUUID
+  ){
+    return crypto.randomUUID();
+  }
+
+  return (
+    "id-" +
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(16)
+      .slice(2)
+  );
+}
+
+
+function esc(v){
+
+  if(
+    v === undefined ||
+    v === null
+  ){
+    return "";
+  }
+
+  return String(v)
+    .replace(
+      /[&<>"']/g,
+      c => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+      })[c]
+    );
+}
+
+
+function todayStr(){
+
+  const d =
+    new Date();
+
+  return (
+
+    d.getFullYear() +
+    "-" +
+
+    String(
+      d.getMonth()+1
+    ).padStart(
+      2,
+      "0"
+    ) +
+
+    "-" +
+
+    String(
+      d.getDate()
+    ).padStart(
+      2,
+      "0"
+    )
+  );
+}
+
+
+function fmtDate(value){
+
+  if(!value){
+    return "";
+  }
+
+  const date =
+    new Date(
+      value +
+      "T00:00:00"
+    );
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+    return value;
+  }
+
+  return date
+    .toLocaleDateString(
+      "en-AU",
+      {
+        day:"2-digit",
+        month:"short",
+        year:"numeric"
+      }
+    );
+}
+
+
+function fmtDateTime(value){
+
+  if(!value){
+    return "Never";
+  }
+
+  return new Date(value)
+    .toLocaleString(
+      "en-AU",
+      {
+        day:"2-digit",
+        month:"short",
+        year:"numeric",
+        hour:"numeric",
+        minute:"2-digit"
+      }
+    );
+}
+
+
+function toast(message){
+
+  const el =
+    document.getElementById(
+      "toast"
+    );
+
+  el.textContent =
+    message;
+
+  el.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    toast.timer
+  );
+
+  toast.timer =
+    setTimeout(
+      () =>
+        el.classList
+          .remove(
+            "show"
+          ),
+      1900
+    );
+}
+
+
+function go(
+  view,
+  params={}
+){
+
+  state.view =
+    view;
+
+  state.params =
+    params;
+
+  window.scrollTo(
+    0,
+    0
+  );
+
+  render();
+}
+
+
+/* ============================================================
+   INDEXEDDB
+============================================================ */
+
+function openDB(){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const request =
+        indexedDB.open(
+          DB_NAME,
+          DB_VERSION
+        );
+
+
+      request.onupgradeneeded =
+        event => {
+
+          const database =
+            event.target.result;
+
+
+          if(
+            !database.objectStoreNames
+              .contains(
+                "customers"
+              )
+          ){
+
+            database
+              .createObjectStore(
+                "customers",
+                {
+                  keyPath:"id"
+                }
+              );
+          }
+
+
+          if(
+            !database.objectStoreNames
+              .contains(
+                "vehicles"
+              )
+          ){
+
+            database
+              .createObjectStore(
+                "vehicles",
+                {
+                  keyPath:"id"
+                }
+              );
+          }
+
+
+          if(
+            !database.objectStoreNames
+              .contains(
+                "records"
+              )
+          ){
+
+            database
+              .createObjectStore(
+                "records",
+                {
+                  keyPath:"id"
+                }
+              );
+          }
+
+
+          if(
+            !database.objectStoreNames
+              .contains(
+                "photos"
+              )
+          ){
+
+            database
+              .createObjectStore(
+                "photos",
+                {
+                  keyPath:"id"
+                }
+              );
+          }
+
+
+          if(
+            !database.objectStoreNames
+              .contains(
+                "settings"
+              )
+          ){
+
+            database
+              .createObjectStore(
+                "settings",
+                {
+                  keyPath:"key"
+                }
+              );
+          }
+        };
+
+
+      request.onsuccess =
+        event => {
+
+          db =
+            event.target.result;
+
+          resolve(db);
+        };
+
+
+      request.onerror =
+        () => {
+
+          reject(
+            request.error
+          );
+        };
+    }
+  );
+}
+
+
+function getStore(
+  name,
+  mode="readonly"
+){
+
+  return db
+    .transaction(
+      name,
+      mode
+    )
+    .objectStore(
+      name
+    );
+}
+
+
+function getAll(
+  name
+){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const request =
+        getStore(name)
+          .getAll();
+
+      request.onsuccess =
+        () =>
+          resolve(
+            request.result ||
+            []
+          );
+
+      request.onerror =
+        () =>
+          reject(
+            request.error
+          );
+    }
+  );
+}
+
+
+function getOne(
+  name,
+  id
+){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const request =
+        getStore(name)
+          .get(id);
+
+      request.onsuccess =
+        () =>
+          resolve(
+            request.result ||
+            null
+          );
+
+      request.onerror =
+        () =>
+          reject(
+            request.error
+          );
+    }
+  );
+}
+
+
+function saveOne(
+  name,
+  object
+){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const request =
+        getStore(
+          name,
+          "readwrite"
+        )
+        .put(
+          object
+        );
+
+      request.onsuccess =
+        () =>
+          resolve(
+            object
+          );
+
+      request.onerror =
+        () =>
+          reject(
+            request.error
+          );
+    }
+  );
+}
+
+
+function deleteOne(
+  name,
+  id
+){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const request =
+        getStore(
+          name,
+          "readwrite"
+        )
+        .delete(id);
+
+      request.onsuccess =
+        resolve;
+
+      request.onerror =
+        () =>
+          reject(
+            request.error
+          );
+    }
+  );
+}
+
+
+function clearStore(
+  name
+){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const request =
+        getStore(
+          name,
+          "readwrite"
+        )
+        .clear();
+
+      request.onsuccess =
+        resolve;
+
+      request.onerror =
+        () =>
+          reject(
+            request.error
+          );
+    }
+  );
+}
+
+
+async function setting(
+  key,
+  fallback=null
+){
+
+  const result =
+    await getOne(
+      "settings",
+      key
+    );
+
+  return (
+    result
+    ? result.value
+    : fallback
+  );
+}
+
+
+async function setSetting(
+  key,
+  value
+){
+
+  await saveOne(
+    "settings",
+    {
+      key,
+      value
+    }
+  );
+}
+
+
+/* ============================================================
+   COMMON DATA
+============================================================ */
+
+async function customerById(id){
+  return getOne(
+    "customers",
+    id
+  );
+}
+
+
+async function vehicleById(id){
+  return getOne(
+    "vehicles",
+    id
+  );
+}
+
+
+async function recordById(id){
+  return getOne(
+    "records",
+    id
+  );
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+function header(
+  back=null
+){
+
+  return `
+
+    <div class="topbar">
+
+      ${
+        back
+        ? `
+
+          <button
+            class="back"
+            data-action="nav"
+            data-view="${back.view}"
+            data-params='${esc(
+              JSON.stringify(
+                back.params ||
+                {}
+              )
+            )}'
+          >
+            ← ${esc(
+              back.label ||
+              "Back"
+            )}
+          </button>
+
+        `
+        : ""
+      }
+
+
+      <div class="brand">
+
+        <div class="brand-title">
+
+          <div class="logo">
+            AC
+          </div>
+
+          <div>
+
+            <h1>
+              Adya Car Care
+            </h1>
+
+            <div class="sub">
+              Workshop Customer &amp; Service Ledger
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <span class="status good">
+          ● Offline
+        </span>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ============================================================
+   BOTTOM NAVIGATION
+============================================================ */
+
+function tabs(active){
+
+  return `
+
+    <div class="tabbar">
+
+      <div class="tabs">
+
+
+        <button
+          class="tab ${
+            active==="home"
+            ? "active"
+            : ""
+          }"
+          data-action="nav"
+          data-view="home"
+          data-params="{}"
+        >
+
+          <span class="ic">
+            ⌂
+          </span>
+
+          Home
+
+        </button>
+
+
+        <button
+          class="tab ${
+            active==="customers"
+            ? "active"
+            : ""
+          }"
+          data-action="nav"
+          data-view="customers"
+          data-params="{}"
+        >
+
+          <span class="ic">
+            👤
+          </span>
+
+          Customers
+
+        </button>
+
+
+        <button
+          class="tab ${
+            active==="records"
+            ? "active redactive"
+            : ""
+          }"
+          data-action="nav"
+          data-view="records"
+          data-params="{}"
+        >
+
+          <span class="ic">
+            🔧
+          </span>
+
+          Jobs
+
+        </button>
+
+
+        <button
+          class="tab ${
+            active==="data"
+            ? "active"
+            : ""
+          }"
+          data-action="nav"
+          data-view="data"
+          data-params="{}"
+        >
+
+          <span class="ic">
+            ▣
+          </span>
+
+          Data
+
+        </button>
+
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ============================================================
+   ROOT RENDER
+============================================================ */
+
+async function render(){
+
+  if(
+    state.view === "home"
+  ){
+
+    app.innerHTML =
+      await viewHome();
+
+  }else if(
+    state.view === "customers"
+  ){
+
+    app.innerHTML =
+      await viewCustomers();
+
+  }else if(
+    state.view === "records"
+  ){
+
+    app.innerHTML =
+      await viewRecords();
+
+  }else if(
+    state.view === "pending"
+  ){
+
+    app.innerHTML =
+      await viewPending();
+
+  }else if(
+    state.view === "customer"
+  ){
+
+    app.innerHTML =
+      await viewCustomer(
+        state.params.id
+      );
+
+  }else if(
+    state.view === "vehicle"
+  ){
+
+    app.innerHTML =
+      await viewVehicle(
+        state.params.id
+      );
+
+  }else if(
+    state.view === "customerForm"
+  ){
+
+    app.innerHTML =
+      await viewCustomerForm(
+        state.params.id
+      );
+
+  }else if(
+    state.view === "vehicleForm"
+  ){
+
+    app.innerHTML =
+      await viewVehicleForm(
+        state.params.customerId,
+        state.params.id
+      );
+
+  }else if(
+    state.view === "recordForm"
+  ){
+
+    app.innerHTML =
+      await viewRecordForm(
+        state.params.vehicleId,
+        state.params.id
+      );
+
+  }else{
+
+    app.innerHTML =
+      await viewData();
+  }
+
+
+  bindViewEvents();
+}
+
+
+/* ============================================================
+   HOME
+============================================================ */
+
+async function viewHome(){
+
+  const [
+    customers,
+    vehicles,
+    records
+  ] =
+    await Promise.all([
+      getAll("customers"),
+      getAll("vehicles"),
+      getAll("records")
+    ]);
+
+
+  const lastBackup =
+    await setting(
+      "lastBackup",
+      null
+    );
+
+
+  const pendingCount =
+    records
+      .filter(
+        r =>
+          (
+            r.pendingWork ||
+            ""
+          ).trim()
+      )
+      .length;
+
+
+  const recent =
+    [...records]
+      .sort(
+        (a,b) =>
+          String(
+            b.date ||
+            ""
+          )
+          .localeCompare(
+            String(
+              a.date ||
+              ""
+            )
+          )
+      )
+      .slice(
+        0,
+        6
+      );
+
+
+  let recentHtml = "";
+
+
+  for(
+    const record of recent
+  ){
+
+    const vehicle =
+      vehicles.find(
+        v =>
+          v.id ===
+          record.vehicleId
+      );
+
+
+    const customer =
+      customers.find(
+        c =>
+          c.id ===
+          record.customerId
+      );
+
+
+    if(
+      !vehicle ||
+      !customer
+    ){
+      continue;
+    }
+
+
+    recentHtml += `
+
+      <div
+        class="card accent"
+        data-action="open-vehicle"
+        data-id="${vehicle.id}"
+      >
+
+        <div class="row">
+
+          <div>
+
+            <div class="name">
+              ${esc(
+                customer.name
+              )}
+            </div>
+
+            <div class="meta">
+
+              ${esc(
+                record.serviceType ||
+                "Service"
+              )}
+
+              ·
+
+              ${fmtDate(
+                record.date
+              )}
+
+            </div>
+
+          </div>
+
+
+          <div class="plate">
+
+            ${esc(
+              vehicle.rego
+            )}
+
+            <span class="vic">
+              VIC
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+
+  return `
+
+    ${header()}
+
+
+    <section class="hero">
+
+      <div class="eyebrow">
+        Workshop Ledger
+      </div>
+
+      <h2>
+        Customer &amp; vehicle history,
+        always at hand.
+      </h2>
+
+      <p>
+        Works offline on this iPhone.
+        Back up to Google Drive when
+        connected to Wi-Fi.
+      </p>
+
+    </section>
+
+
+    <div class="search-panel">
+
+      <div class="search-wrap">
+
+        <input
+          id="homeSearch"
+          class="search-input"
+          placeholder="Search rego, mobile or customer..."
+          autocomplete="off"
+        >
+
+      </div>
+
+    </div>
+
+
+    <main>
+
+
+      <div class="stats">
+
+        <div class="stat">
+
+          <div class="n">
+            ${customers.length}
+          </div>
+
+          <div class="l">
+            Customers
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div class="n">
+            ${vehicles.length}
+          </div>
+
+          <div class="l">
+            Vehicles
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div class="n">
+            ${records.length}
+          </div>
+
+          <div class="l">
+            Jobs
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="quick">
+
+
+        <button
+          data-action="new-customer"
+        >
+
+          ＋ New Customer
+
+          <span class="qsub">
+            Add customer and vehicle
+          </span>
+
+        </button>
+
+
+        <button
+          data-action="nav"
+          data-view="pending"
+          data-params="{}"
+        >
+
+          ⚠ Pending Work
+
+          <span class="qsub">
+
+            ${pendingCount}
+            follow-up item${
+              pendingCount === 1
+              ? ""
+              : "s"
+            }
+
+          </span>
+
+        </button>
+
+
+        <button
+          data-action="nav"
+          data-view="customers"
+          data-params="{}"
+        >
+
+          👤 Customers
+
+          <span class="qsub">
+            Browse the full list
+          </span>
+
+        </button>
+
+
+        <button
+          data-action="backup"
+        >
+
+          ☁ Backup
+
+          <span class="qsub">
+
+            ${
+              lastBackup
+
+              ? "Last: " +
+                fmtDateTime(
+                  lastBackup
+                )
+
+              : "Not backed up yet"
+            }
+
+          </span>
+
+        </button>
+
+
+      </div>
+
+
+      <div class="section">
+
+        Recent workshop visits
+
+        <span
+          data-action="nav"
+          data-view="records"
+          data-params="{}"
+          style="
+            color:var(--blue);
+            cursor:pointer;
+          "
+        >
+          View all
+        </span>
+
+      </div>
+
+
+      ${
+        recentHtml
+
+        ||
+
+        `
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            🔧
+          </div>
+
+          <div class="big">
+            No service visits yet
+          </div>
+
+          Add your first customer to
+          get started.
+
+        </div>
+        `
+      }
+
+
+    </main>
+
+
+    <button
+      class="fab"
+      data-action="new-customer"
+    >
+      +
+    </button>
+
+
+    ${tabs("home")}
+  `;
+}
+
+
+/* ============================================================
+   ALL CUSTOMERS
+============================================================ */
+
+async function viewCustomers(){
+
+  const customers =
+    await getAll(
+      "customers"
+    );
+
+
+  customers.sort(
+    (a,b) =>
+      String(
+        a.name ||
+        ""
+      )
+      .localeCompare(
+        String(
+          b.name ||
+          ""
+        )
+      )
+  );
+
+
+  let html = "";
+
+
+  for(
+    const customer of customers
+  ){
+
+    html +=
+      await customerCard(
+        customer
+      );
+  }
+
+
+  return `
+
+    ${header()}
+
+
+    <main>
+
+      <div class="page-title-row">
+
+        <div>
+
+          <h2 class="page-title">
+            Customers
+          </h2>
+
+          <div class="page-sub">
+            Browse every customer alphabetically
+          </div>
+
+        </div>
+
+        <div class="count">
+          ${customers.length}
+        </div>
+
+      </div>
+
+
+      <div class="search-wrap">
+
+        <input
+          id="customerSearch"
+          class="search-input"
+          placeholder="Filter customers..."
+        >
+
+      </div>
+
+
+      <div class="section">
+        All customers
+      </div>
+
+
+      ${
+        html
+
+        ||
+
+        `
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            👤
+          </div>
+
+          <div class="big">
+            No customers yet
+          </div>
+
+        </div>
+        `
+      }
+
+    </main>
+
+
+    <button
+      class="fab"
+      data-action="new-customer"
+    >
+      +
+    </button>
+
+
+    ${tabs("customers")}
+  `;
+}
+
+
+async function customerCard(
+  customer
+){
+
+  const vehicles =
+    (
+      await getAll(
+        "vehicles"
+      )
+    )
+    .filter(
+      v =>
+        v.customerId ===
+        customer.id
+    );
+
+
+  return `
+
+    <div
+      class="card"
+      data-action="open-customer"
+      data-id="${customer.id}"
+    >
+
+      <div class="name">
+
+        ${esc(
+          customer.name
+        )}
+
+      </div>
+
+
+      <div class="meta">
+
+        ${
+          esc(
+            (
+              customer.phones ||
+              []
+            )
+            .join(
+              " · "
+            )
+          )
+
+          ||
+
+          "No number saved"
+        }
+
+      </div>
+
+
+      ${
+        vehicles.length
+
+        ? `
+
+          <div class="plate-row">
+
+            ${
+              vehicles
+                .map(
+                  v => `
+
+                    <div class="plate">
+
+                      ${esc(
+                        v.rego
+                      )}
+
+                      <span class="vic">
+                        VIC
+                      </span>
+
+                    </div>
+
+                  `
+                )
+                .join("")
+            }
+
+          </div>
+
+        `
+
+        : ""
+      }
+
+    </div>
+  `;
+}
+
+
+/* ============================================================
+   ALL JOBS
+============================================================ */
+
+async function viewRecords(){
+
+  const [
+    records,
+    vehicles,
+    customers
+  ] =
+    await Promise.all([
+      getAll("records"),
+      getAll("vehicles"),
+      getAll("customers")
+    ]);
+
+
+  records.sort(
+    (a,b) =>
+      String(
+        b.date ||
+        ""
+      )
+      .localeCompare(
+        String(
+          a.date ||
+          ""
+        )
+      )
+  );
+
+
+  let html = "";
+
+
+  for(
+    const record of records
+  ){
+
+    html +=
+      buildJobCard(
+        record,
+        vehicles,
+        customers
+      );
+  }
+
+
+  return `
+
+    ${header()}
+
+
+    <main>
+
+      <div class="page-title-row">
+
+        <div>
+
+          <h2 class="page-title">
+            Jobs
+          </h2>
+
+          <div class="page-sub">
+            Complete workshop service history
+          </div>
+
+        </div>
+
+        <div class="count">
+          ${records.length}
+        </div>
+
+      </div>
+
+
+      <div class="search-wrap">
+
+        <input
+          id="recordSearch"
+          class="search-input"
+          placeholder="Search name, rego, service, invoice..."
+        >
+
+      </div>
+
+
+      <div class="section">
+        All service visits
+      </div>
+
+
+      ${
+        html
+
+        ||
+
+        `
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            🔧
+          </div>
+
+          <div class="big">
+            No jobs yet
+          </div>
+
+        </div>
+        `
+      }
+
+    </main>
+
+
+    ${tabs("records")}
+  `;
+}
+
+
+function buildJobCard(
+  record,
+  vehicles,
+  customers
+){
+
+  const vehicle =
+    vehicles.find(
+      v =>
+        v.id ===
+        record.vehicleId
+    );
+
+
+  const customer =
+    customers.find(
+      c =>
+        c.id ===
+        record.customerId
+    );
+
+
+  const statusClass =
+
+    record.paymentStatus ===
+    "Paid in full"
+
+    ? "paid"
+
+    : record.paymentStatus ===
+      "Partial"
+
+    ? "partial"
+
+    : "unpaid";
+
+
+  return `
+
+    <div
+      class="record"
+      data-job-search="${esc(
+        [
+          customer?.name,
+          vehicle?.rego,
+          vehicle?.make,
+          vehicle?.model,
+          record.serviceType,
+          record.invoiceNumber,
+          record.workDone,
+          record.pendingWork
+        ]
+        .join(" ")
+        .toLowerCase()
+      )}"
+    >
+
+      <div class="record-top">
+
+        <div>
+
+          <div class="rdate">
+
+            ${fmtDate(
+              record.date
+            )}
+
+          </div>
+
+          <div class="rtype">
+
+            ${esc(
+              record.serviceType ||
+              "Service"
+            )}
+
+          </div>
+
+        </div>
+
+
+        ${
+          record.paymentStatus
+
+          ? `
+
+            <span
+              class="badge ${statusClass}"
+            >
+              ${esc(
+                record.paymentStatus
+              )}
+            </span>
+
+          `
+
+          : ""
+        }
+
+      </div>
+
+
+      <div
+        class="row"
+        style="
+          margin-top:10px;
+          align-items:flex-start;
+        "
+      >
+
+        <div>
+
+          <div
+            class="name"
+            style="font-size:14px"
+          >
+
+            ${esc(
+              customer?.name ||
+              "Unknown customer"
+            )}
+
+          </div>
+
+          <div class="meta">
+
+            ${esc(
+              [
+                vehicle?.year,
+                vehicle?.make,
+                vehicle?.model
+              ]
+              .filter(Boolean)
+              .join(" ")
+            )}
+
+          </div>
+
+        </div>
+
+
+        ${
+          vehicle
+
+          ? `
+
+            <div class="plate">
+
+              ${esc(
+                vehicle.rego
+              )}
+
+              <span class="vic">
+                VIC
+              </span>
+
+            </div>
+
+          `
+
+          : ""
+        }
+
+      </div>
+
+
+      ${
+        record.pendingWork
+
+        ? `
+
+          <div class="pending">
+
+            <b>
+              Pending:
+            </b>
+
+            ${esc(
+              record.pendingWork
+            )}
+
+          </div>
+
+        `
+
+        : ""
+      }
+
+
+      <div class="actions">
+
+        ${
+          vehicle
+
+          ? `
+
+            <button
+              data-action="open-vehicle"
+              data-id="${vehicle.id}"
+            >
+              Open vehicle
+            </button>
+
+          `
+
+          : ""
+        }
+
+
+        <button
+          data-action="edit-record"
+          data-id="${record.id}"
+          data-vid="${record.vehicleId}"
+        >
+          Edit
+        </button>
+
+
+        <button
+          class="del"
+          data-action="delete-record"
+          data-id="${record.id}"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ============================================================
+   PENDING WORK
+============================================================ */
+
+async function viewPending(){
+
+  const [
+    records,
+    vehicles,
+    customers
+  ] =
+    await Promise.all([
+      getAll("records"),
+      getAll("vehicles"),
+      getAll("customers")
+    ]);
+
+
+  const pending =
+    records
+      .filter(
+        r =>
+          (
+            r.pendingWork ||
+            ""
+          ).trim()
+      )
+      .sort(
+        (a,b) =>
+          String(
+            b.date ||
+            ""
+          )
+          .localeCompare(
+            String(
+              a.date ||
+              ""
+            )
+          )
+      );
+
+
+  return `
+
+    ${header({
+      view:"home",
+      params:{},
+      label:"Home"
+    })}
+
+
+    <main>
+
+      <div class="page-title-row">
+
+        <div>
+
+          <h2 class="page-title">
+            Pending Work
+          </h2>
+
+          <div class="page-sub">
+            Follow-ups from previous visits
+          </div>
+
+        </div>
+
+        <div class="count">
+          ${pending.length}
+        </div>
+
+      </div>
+
+
+      ${
+        pending.length
+
+        ? pending
+          .map(
+            r =>
+              buildJobCard(
+                r,
+                vehicles,
+                customers
+              )
+          )
+          .join("")
+
+        : `
+
+          <div class="empty">
+
+            <div class="empty-icon">
+              ✓
+            </div>
+
+            <div class="big">
+              Nothing pending
+            </div>
+
+            No follow-up work is
+            currently recorded.
+
+          </div>
+        `
+      }
+
+    </main>
+
+
+    ${tabs("")}
+  `;
+}
+
+
+/* ============================================================
+   CUSTOMER DETAILS
+============================================================ */
+
+async function viewCustomer(id){
+
+  const customer =
+    await customerById(id);
+
+
+  if(!customer){
+    return "";
+  }
+
+
+  const vehicles =
+    (
+      await getAll(
+        "vehicles"
+      )
+    )
+    .filter(
+      v =>
+        v.customerId ===
+        id
+    );
+
+
+  return `
+
+    ${header({
+      view:"customers",
+      params:{},
+      label:"Customers"
+    })}
+
+
+    <main>
+
+      <div class="detail">
+
+        <h2>
+          ${esc(
+            customer.name
+          )}
+        </h2>
+
+
+        ${
+          customer.email
+          ? `
+            <div class="meta">
+              ${esc(
+                customer.email
+              )}
+            </div>
+          `
+          : ""
+        }
+
+
+        ${
+          customer.address
+          ? `
+            <div class="meta">
+              ${esc(
+                customer.address
+              )}
+            </div>
+          `
+          : ""
+        }
+
+
+        <div class="chips">
+
+          ${
+            (
+              customer.phones ||
+              []
+            )
+            .map(
+              phone => `
+
+                <span class="chip">
+
+                  <a
+                    href="tel:${esc(
+                      String(phone)
+                        .replace(
+                          /\s/g,
+                          ""
+                        )
+                    )}"
+                  >
+                    ${esc(phone)}
+                  </a>
+
+                </span>
+
+              `
+            )
+            .join("")
+
+            ||
+
+            `<span class="chip">
+              No number saved
+            </span>`
+          }
+
+        </div>
+
+
+        ${
+          customer.notes
+          ? `
+            <div class="label">
+              Notes
+            </div>
+
+            ${esc(
+              customer.notes
+            )}
+          `
+          : ""
+        }
+
+
+        <div class="section">
+          Customer photos
+        </div>
+
+
+        ${await photoGrid(
+          "customer",
+          customer.id,
+          false
+        )}
+
+
+        <div class="btn-row">
+
+          <button
+            class="btn"
+            data-action="edit-customer"
+            data-id="${customer.id}"
+          >
+            Edit Customer
+          </button>
+
+
+          <button
+            class="btn danger"
+            data-action="delete-customer"
+            data-id="${customer.id}"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="section">
+
+        Vehicles
+
+        <span>
+          ${vehicles.length}
+        </span>
+
+      </div>
+
+
+      ${
+        vehicles
+          .map(
+            vehicle => `
+
+              <div
+                class="vehicle"
+                data-action="open-vehicle"
+                data-id="${vehicle.id}"
+              >
+
+                <div class="plate lg">
+
+                  ${esc(
+                    vehicle.rego
+                  )}
+
+                  <span class="vic">
+                    VIC
+                  </span>
+
+                </div>
+
+                <div class="vinfo">
+
+                  <b>
+
+                    ${esc(
+                      [
+                        vehicle.year,
+                        vehicle.make,
+                        vehicle.model
+                      ]
+                      .filter(Boolean)
+                      .join(" ")
+                    )}
+
+                  </b>
+
+                  ${
+                    vehicle.color
+                    ? " · " +
+                      esc(
+                        vehicle.color
+                      )
+                    : ""
+                  }
+
+                </div>
+
+              </div>
+
+            `
+          )
+          .join("")
+
+        ||
+
+        `<div class="empty">
+           <div class="big">
+             No vehicles yet
+           </div>
+         </div>`
+      }
+
+
+      <button
+        class="btn red"
+        data-action="add-vehicle"
+        data-id="${customer.id}"
+      >
+        + Add Vehicle
+      </button>
+
+    </main>
+
+
+    ${tabs("")}
+  `;
+}
+
+
+/* ============================================================
+   VEHICLE DETAILS
+============================================================ */
+
+async function viewVehicle(id){
+
+  const vehicle =
+    await vehicleById(id);
+
+
+  if(!vehicle){
+    return "";
+  }
+
+
+  const customer =
+    await customerById(
+      vehicle.customerId
+    );
+
+
+  const records =
+    (
+      await getAll(
+        "records"
+      )
+    )
+    .filter(
+      r =>
+        r.vehicleId ===
+        id
+    )
+    .sort(
+      (a,b) =>
+        String(
+          b.date ||
+          ""
+        )
+        .localeCompare(
+          String(
+            a.date ||
+            ""
+          )
+        )
+    );
+
+
+  let history = "";
+
+
+  for(
+    const record of records
+  ){
+
+    history +=
+      await recordCard(
+        record
+      );
+  }
+
+
+  return `
+
+    ${header({
+      view:"customer",
+      params:{
+        id:
+          vehicle.customerId
+      },
+      label:
+        customer?.name ||
+        "Customer"
+    })}
+
+
+    <main>
+
+      <div class="detail">
+
+        <div class="row">
+
+          <div class="plate lg">
+
+            ${esc(
+              vehicle.rego
+            )}
+
+            <span class="vic">
+              VIC
+            </span>
+
+          </div>
+
+
+          <div class="meta">
+
+            ${esc(
+              customer?.name ||
+              ""
+            )}
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="vinfo"
+          style="margin-top:12px"
+        >
+
+          <b>
+
+            ${esc(
+              [
+                vehicle.year,
+                vehicle.make,
+                vehicle.model
+              ]
+              .filter(Boolean)
+              .join(" ")
+            )}
+
+          </b>
+
+
+          ${
+            vehicle.color
+            ? " · " +
+              esc(
+                vehicle.color
+              )
+            : ""
+          }
+
+        </div>
+
+
+        ${
+          vehicle.vin
+          ? `
+            <div class="label">
+              VIN / Chassis
+            </div>
+
+            ${esc(
+              vehicle.vin
+            )}
+          `
+          : ""
+        }
+
+
+        ${
+          vehicle.odometer
+          ? `
+            <div class="label">
+              Last known odometer
+            </div>
+
+            ${esc(
+              vehicle.odometer
+            )} km
+          `
+          : ""
+        }
+
+
+        ${
+          vehicle.notes
+          ? `
+            <div class="label">
+              Notes
+            </div>
+
+            ${esc(
+              vehicle.notes
+            )}
+          `
+          : ""
+        }
+
+
+        <div class="section">
+          Vehicle photos
+        </div>
+
+
+        ${await photoGrid(
+          "vehicle",
+          vehicle.id,
+          false
+        )}
+
+
+        <div class="btn-row">
+
+          <button
+            class="btn secondary"
+            data-action="edit-vehicle"
+            data-id="${vehicle.id}"
+          >
+            Edit Vehicle
+          </button>
+
+          <button
+            class="btn danger"
+            data-action="delete-vehicle"
+            data-id="${vehicle.id}"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn red"
+        data-action="add-record"
+        data-id="${vehicle.id}"
+      >
+        + New Service Visit
+      </button>
+
+
+      <div class="section">
+
+        Service history
+
+        <span>
+          ${records.length}
+        </span>
+
+      </div>
+
+
+      ${
+        history
+
+        ||
+
+        `<div class="empty">
+           <div class="big">
+             No service visits yet
+           </div>
+         </div>`
+      }
+
+    </main>
+
+
+    ${tabs("")}
+  `;
+}
+
+
+/* ============================================================
+   SERVICE CARD
+============================================================ */
+
+async function recordCard(record){
+
+  const statusClass =
+
+    record.paymentStatus ===
+    "Paid in full"
+
+    ? "paid"
+
+    : record.paymentStatus ===
+      "Partial"
+
+    ? "partial"
+
+    : "unpaid";
+
+
+  return `
+
+    <div class="record">
+
+      <div class="record-top">
+
+        <div>
+
+          <div class="rdate">
+
+            ${fmtDate(
+              record.date
+            )}
+
+          </div>
+
+          <div class="rtype">
+
+            ${esc(
+              record.serviceType ||
+              "Service"
+            )}
+
+          </div>
+
+        </div>
+
+
+        ${
+          record.paymentStatus
+
+          ? `
+
+            <span
+              class="badge ${statusClass}"
+            >
+
+              ${esc(
+                record.paymentStatus
+              )}
+
+            </span>
+
+          `
+
+          : ""
+        }
+
+      </div>
+
+
+      ${
+        record.quoteDetails
+
+        ? `
+          <div class="label">
+            Quote
+          </div>
+
+          ${esc(
+            record.quoteDetails
+          )}
+
+          ${
+            record.quoteAmount
+            ? " — $" +
+              esc(
+                record.quoteAmount
+              )
+            : ""
+          }
+        `
+
+        : ""
+      }
+
+
+      ${
+        record.workDone
+
+        ? `
+          <div class="label">
+            Work completed
+          </div>
+
+          ${esc(
+            record.workDone
+          )}
+
+          ${
+            record.amountPaid
+            ? " — $" +
+              esc(
+                record.amountPaid
+              )
+            : ""
+          }
+        `
+
+        : ""
+      }
+
+
+      ${
+        record.odometerAtVisit
+
+        ? `
+          <div class="label">
+            Odometer
+          </div>
+
+          ${esc(
+            record.odometerAtVisit
+          )} km
+        `
+
+        : ""
+      }
+
+
+      ${
+        record.invoiceNumber
+
+        ? `
+          <div class="label">
+            Invoice / Job #
+          </div>
+
+          ${esc(
+            record.invoiceNumber
+          )}
+        `
+
+        : ""
+      }
+
+
+      ${
+        record.pendingWork
+
+        ? `
+          <div class="pending">
+
+            <b>
+              Pending:
+            </b>
+
+            ${esc(
+              record.pendingWork
+            )}
+
+          </div>
+        `
+
+        : ""
+      }
+
+
+      ${
+        (
+          await ownerPhotos(
+            "record",
+            record.id
+          )
+        ).length
+
+        ? `
+
+          <div class="section">
+            Photos
+          </div>
+
+          ${await photoGrid(
+            "record",
+            record.id,
+            false
+          )}
+
+        `
+
+        : ""
+      }
+
+
+      <div class="actions">
+
+        <button
+          data-action="edit-record"
+          data-id="${record.id}"
+          data-vid="${record.vehicleId}"
+        >
+          Edit
+        </button>
+
+
+        <button
+          class="del"
+          data-action="delete-record"
+          data-id="${record.id}"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* ============================================================
+   CUSTOMER FORM
+============================================================ */
+
+async function viewCustomerForm(id){
+
+  const editing =
+    Boolean(id);
+
+
+  const customer =
+
+    editing
+
+    ? await customerById(id)
+
+    : {
+
+        id:uid(),
+
+        name:"",
+
+        phones:[""],
+
+        email:"",
+
+        address:"",
+
+        notes:""
+      };
+
+
+  const phones =
+    customer.phones?.length
+    ? customer.phones
+    : [""];
+
+
+  return `
+
+    ${header({
+      view:
+        editing
+        ? "customer"
+        : "home",
+      params:
+        editing
+        ? {id}
+        : {},
+      label:"Cancel"
+    })}
+
+
+    <main>
+
+      <h2 class="page-title">
+
+        ${
+          editing
+          ? "Edit Customer"
+          : "New Customer"
+        }
+
+      </h2>
+
+
+      <br>
+
+
+      <form id="customerForm">
+
+        <input
+          type="hidden"
+          name="id"
+          value="${customer.id}"
+        >
+
+
+        <div class="field">
+
+          <label>
+            Full name
+          </label>
+
+          <input
+            name="name"
+            required
+            value="${esc(
+              customer.name
+            )}"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Phone number(s)
+          </label>
+
+
+          <div id="phoneList">
+
+            ${
+              phones
+                .map(
+                  p => `
+
+                    <div class="multi">
+
+                      <input
+                        type="tel"
+                        name="phone"
+                        value="${esc(p)}"
+                        placeholder="04xx xxx xxx"
+                      >
+
+                      ${
+                        phones.length > 1
+                        ? `
+                          <button
+                            type="button"
+                            class="iconbtn"
+                            data-action="remove-phone-row"
+                          >
+                            −
+                          </button>
+                        `
+                        : ""
+                      }
+
+                    </div>
+
+                  `
+                )
+                .join("")
+            }
+
+          </div>
+
+
+          <button
+            type="button"
+            id="addPhoneBtn"
+            class="addlink"
+          >
+            + Add another number
+          </button>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Email
+          </label>
+
+          <input
+            type="email"
+            name="email"
+            value="${esc(
+              customer.email ||
+              ""
+            )}"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Address
+          </label>
+
+          <input
+            name="address"
+            value="${esc(
+              customer.address ||
+              ""
+            )}"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            General notes
+          </label>
+
+          <textarea
+            name="notes"
+          >${esc(
+            customer.notes ||
+            ""
+          )}</textarea>
+
+        </div>
+
+
+        ${
+          editing
+
+          ? `
+
+            <div class="divider"></div>
+
+            <div class="fieldset">
+              Customer Photos
+            </div>
+
+            ${await photoGrid(
+              "customer",
+              customer.id,
+              true
+            )}
+
+            ${photoButtons(
+              "customer",
+              customer.id
+            )}
+
+          `
+
+          : `
+
+            <div class="notice">
+
+              Save the customer first,
+              then edit the customer to
+              attach photos.
+
+            </div>
+
+          `
+        }
+
+
+        <button
+          class="btn"
+          type="submit"
+        >
+
+          ${
+            editing
+            ? "Save Changes"
+            : "Save Customer"
+          }
+
+        </button>
+
+      </form>
+
+    </main>
+
+
+    ${tabs("")}
+  `;
+}
+
+
+/* ============================================================
+   VEHICLE FORM
+============================================================ */
+
+async function viewVehicleForm(
+  customerId,
+  id
+){
+
+  const editing =
+    Boolean(id);
+
+
+  const vehicle =
+
+    editing
+
+    ? await vehicleById(id)
+
+    : {
+
+        id:uid(),
+
+        customerId,
+
+        rego:"",
+
+        make:"",
+
+        model:"",
+
+        year:"",
+
+        color:"",
+
+        vin:"",
+
+        odometer:"",
+
+        notes:""
+      };
+
+
+  return `
+
+    ${header({
+      view:"customer",
+      params:{
+        id:
+          vehicle.customerId
+      },
+      label:"Cancel"
+    })}
+
+
+    <main>
+
+      <h2 class="page-title">
+
+        ${
+          editing
+          ? "Edit Vehicle"
+          : "New Vehicle"
+        }
+
+      </h2>
+
+
+      <br>
+
+
+      <form id="vehicleForm">
+
+        <input
+          type="hidden"
+          name="id"
+          value="${vehicle.id}"
+        >
+
+        <input
+          type="hidden"
+          name="customerId"
+          value="${vehicle.customerId}"
+        >
+
+
+        <div class="field">
+
+          <label>
+            Rego / plate number
+          </label>
+
+          <input
+            name="rego"
+            required
+            value="${esc(
+              vehicle.rego
+            )}"
+            style="text-transform:uppercase"
+          >
+
+        </div>
+
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Make
+            </label>
+
+            <input
+              name="make"
+              value="${esc(
+                vehicle.make
+              )}"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Model
+            </label>
+
+            <input
+              name="model"
+              value="${esc(
+                vehicle.model
+              )}"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Year
+            </label>
+
+            <input
+              type="number"
+              name="year"
+              value="${esc(
+                vehicle.year
+              )}"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Colour
+            </label>
+
+            <input
+              name="color"
+              value="${esc(
+                vehicle.color
+              )}"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            VIN / chassis number
+          </label>
+
+          <input
+            name="vin"
+            value="${esc(
+              vehicle.vin
+            )}"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Current odometer (km)
+          </label>
+
+          <input
+            type="number"
+            name="odometer"
+            value="${esc(
+              vehicle.odometer
+            )}"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Notes
+          </label>
+
+          <textarea
+            name="notes"
+          >${esc(
+            vehicle.notes
+          )}</textarea>
+
+        </div>
+
+
+        ${
+          editing
+
+          ? `
+
+            <div class="divider"></div>
+
+            <div class="fieldset">
+              Vehicle Photos
+            </div>
+
+            ${await photoGrid(
+              "vehicle",
+              vehicle.id,
+              true
+            )}
+
+            ${photoButtons(
+              "vehicle",
+              vehicle.id
+            )}
+
+          `
+
+          : `
+
+            <div class="notice">
+
+              Save the vehicle first,
+              then edit it to add photos.
+
+            </div>
+          `
+        }
+
+
+        <button
+          class="btn red"
+          type="submit"
+        >
+
+          ${
+            editing
+            ? "Save Changes"
+            : "Save Vehicle"
+          }
+
+        </button>
+
+      </form>
+
+    </main>
+
+
+    ${tabs("")}
+  `;
+}
+
+
+/* ============================================================
+   SERVICE FORM
+============================================================ */
+
+async function viewRecordForm(
+  vehicleId,
+  id
+){
+
+  const editing =
+    Boolean(id);
+
+
+  const record =
+
+    editing
+
+    ? await recordById(id)
+
+    : {
+
+        id:uid(),
+
+        vehicleId,
+
+        date:
+          todayStr(),
+
+        serviceType:"",
+
+        quoteDetails:"",
+
+        quoteAmount:"",
+
+        workDone:"",
+
+        amountPaid:"",
+
+        paymentMethod:"",
+
+        paymentStatus:"",
+
+        invoiceNumber:"",
+
+        odometerAtVisit:"",
+
+        pendingWork:"",
+
+        nextServiceDate:"",
+
+        nextServiceKm:"",
+
+        technicianNotes:""
+      };
+
+
+  return `
+
+    ${header({
+      view:"vehicle",
+      params:{
+        id:
+          record.vehicleId
+      },
+      label:"Cancel"
+    })}
+
+
+    <main>
+
+      <h2 class="page-title">
+
+        ${
+          editing
+          ? "Edit Service Visit"
+          : "New Service Visit"
+        }
+
+      </h2>
+
+
+      <br>
+
+
+      <form id="recordForm">
+
+        <input
+          type="hidden"
+          name="id"
+          value="${record.id}"
+        >
+
+        <input
+          type="hidden"
+          name="vehicleId"
+          value="${record.vehicleId}"
+        >
+
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Date of visit
+            </label>
+
+            <input
+              type="date"
+              name="date"
+              required
+              value="${esc(
+                record.date
+              )}"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Odometer at visit (km)
+            </label>
+
+            <input
+              type="number"
+              name="odometerAtVisit"
+              value="${esc(
+                record.odometerAtVisit
+              )}"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Type of service
+          </label>
+
+          <input
+            name="serviceType"
+            list="serviceTypeList"
+            required
+            value="${esc(
+              record.serviceType
+            )}"
+            placeholder="Select or type"
+          >
+
+          <datalist
+            id="serviceTypeList"
+          >
+
+            ${
+              SERVICE_TYPES
+                .map(
+                  type =>
+                    `<option value="${esc(type)}">`
+                )
+                .join("")
+            }
+
+          </datalist>
+
+        </div>
+
+
+        <div class="divider"></div>
+
+        <div class="fieldset">
+          Quote
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Quote details
+          </label>
+
+          <textarea
+            name="quoteDetails"
+          >${esc(
+            record.quoteDetails
+          )}</textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Quote amount ($)
+          </label>
+
+          <input
+            type="number"
+            step=".01"
+            min="0"
+            name="quoteAmount"
+            value="${esc(
+              record.quoteAmount
+            )}"
+          >
+
+        </div>
+
+
+        <div class="divider"></div>
+
+        <div class="fieldset">
+          Work completed &amp; payment
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            What the customer proceeded with
+          </label>
+
+          <textarea
+            name="workDone"
+          >${esc(
+            record.workDone
+          )}</textarea>
+
+        </div>
+
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Amount paid ($)
+            </label>
+
+            <input
+              type="number"
+              step=".01"
+              min="0"
+              name="amountPaid"
+              value="${esc(
+                record.amountPaid
+              )}"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Payment method
+            </label>
+
+            <select
+              name="paymentMethod"
+            >
+
+              <option value="">
+                —
+              </option>
+
+              ${
+                [
+                  "Cash",
+                  "Card / EFTPOS",
+                  "Bank transfer",
+                  "Other"
+                ]
+                .map(
+                  method => `
+
+                    <option
+                      value="${method}"
+                      ${
+                        record.paymentMethod ===
+                        method
+                        ? "selected"
+                        : ""
+                      }
+                    >
+                      ${method}
+                    </option>
+
+                  `
+                )
+                .join("")
+              }
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Payment status
+            </label>
+
+            <select
+              name="paymentStatus"
+            >
+
+              <option value="">
+                —
+              </option>
+
+              ${
+                [
+                  "Paid in full",
+                  "Partial",
+                  "Unpaid"
+                ]
+                .map(
+                  status => `
+
+                    <option
+                      value="${status}"
+                      ${
+                        record.paymentStatus ===
+                        status
+                        ? "selected"
+                        : ""
+                      }
+                    >
+                      ${status}
+                    </option>
+
+                  `
+                )
+                .join("")
+              }
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Invoice / job number
+            </label>
+
+            <input
+              name="invoiceNumber"
+              value="${esc(
+                record.invoiceNumber
+              )}"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="divider"></div>
+
+        <div class="fieldset">
+          Follow-up
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Pending work / what to check next time
+          </label>
+
+          <textarea
+            name="pendingWork"
+          >${esc(
+            record.pendingWork
+          )}</textarea>
+
+        </div>
+
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Next service due date
+            </label>
+
+            <input
+              type="date"
+              name="nextServiceDate"
+              value="${esc(
+                record.nextServiceDate
+              )}"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Next service due km
+            </label>
+
+            <input
+              type="number"
+              name="nextServiceKm"
+              value="${esc(
+                record.nextServiceKm
+              )}"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Internal workshop notes
+          </label>
+
+          <textarea
+            name="technicianNotes"
+          >${esc(
+            record.technicianNotes
+          )}</textarea>
+
+        </div>
+
+
+        ${
+          editing
+
+          ? `
+
+            <div class="divider"></div>
+
+            <div class="fieldset">
+              Service Photos
+            </div>
+
+            ${await photoGrid(
+              "record",
+              record.id,
+              true
+            )}
+
+            ${photoButtons(
+              "record",
+              record.id
+            )}
+
+          `
+
+          : `
+
+            <div class="notice">
+
+              Save this service visit first.
+              Then edit it to attach photos.
+
+            </div>
+          `
+        }
+
+
+        <button
+          class="btn red"
+          type="submit"
+        >
+
+          ${
+            editing
+            ? "Save Changes"
+            : "Save Service Visit"
+          }
+
+        </button>
+
+      </form>
+
+    </main>
+
+
+    ${tabs("")}
+  `;
+}
+
+
+/* ============================================================
+   PHOTOS
+============================================================ */
+
+async function ownerPhotos(
+  ownerType,
+  ownerId
+){
+
+  return (
+    await getAll(
+      "photos"
+    )
+  )
+  .filter(
+    photo =>
+      photo.ownerType ===
+      ownerType
+
+      &&
+
+      photo.ownerId ===
+      ownerId
+  );
+}
+
+
+async function photoGrid(
+  ownerType,
+  ownerId,
+  editable=false
+){
+
+  const photos =
+    await ownerPhotos(
+      ownerType,
+      ownerId
+    );
+
+
+  if(!photos.length){
+
+    return `
+      <div class="meta">
+        No photos saved.
+      </div>
+    `;
+  }
+
+
+  let output = "";
+
+
+  for(
+    const photo of photos
+  ){
+
+    const url =
+      URL.createObjectURL(
+        photo.blob
+      );
+
+
+    output += `
+
+      <div class="photo">
+
+        <img
+          src="${url}"
+          data-action="view-photo"
+        >
+
+        ${
+          editable
+
+          ? `
+
+            <button
+              type="button"
+              class="x"
+              data-action="delete-photo"
+              data-photo-id="${photo.id}"
+            >
+              ×
+            </button>
+
+          `
+
+          : ""
+        }
+
+      </div>
+    `;
+  }
+
+
+  return `
+    <div class="photos">
+      ${output}
+    </div>
+  `;
+}
+
+
+function photoButtons(
+  ownerType,
+  ownerId
+){
+
+  return `
+
+    <div class="btn-row">
+
+      <button
+        type="button"
+        class="btn secondary"
+        data-action="take-photo"
+        data-owner-type="${ownerType}"
+        data-owner-id="${ownerId}"
+      >
+        📷 Take Photo
+      </button>
+
+
+      <button
+        type="button"
+        class="btn secondary"
+        data-action="choose-photo"
+        data-owner-type="${ownerType}"
+        data-owner-id="${ownerId}"
+      >
+        🖼 Photo Library
+      </button>
+
+    </div>
+  `;
+}
+
+
+let photoTarget = null;
+
+
+function compressImage(
+  file,
+  maxSide=1600,
+  quality=.82
+){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const img =
+        new Image();
+
+
+      const url =
+        URL.createObjectURL(
+          file
+        );
+
+
+      img.onload =
+        () => {
+
+          let width =
+            img.naturalWidth;
+
+          let height =
+            img.naturalHeight;
+
+
+          const scale =
+            Math.min(
+              1,
+              maxSide /
+              Math.max(
+                width,
+                height
+              )
+            );
+
+
+          width =
+            Math.round(
+              width * scale
+            );
+
+          height =
+            Math.round(
+              height * scale
+            );
+
+
+          const canvas =
+            document.createElement(
+              "canvas"
+            );
+
+
+          canvas.width =
+            width;
+
+          canvas.height =
+            height;
+
+
+          canvas
+            .getContext(
+              "2d"
+            )
+            .drawImage(
+              img,
+              0,
+              0,
+              width,
+              height
+            );
+
+
+          canvas.toBlob(
+            blob => {
+
+              URL.revokeObjectURL(
+                url
+              );
+
+              if(blob){
+
+                resolve(blob);
+
+              }else{
+
+                reject(
+                  new Error(
+                    "Image compression failed."
+                  )
+                );
+              }
+            },
+
+            "image/jpeg",
+
+            quality
+          );
+        };
+
+
+      img.onerror =
+        () => {
+
+          reject(
+            new Error(
+              "Could not read image."
+            )
+          );
+        };
+
+
+      img.src =
+        url;
+    }
+  );
+}
+
+
+async function savePhotos(
+  files,
+  ownerType,
+  ownerId
+){
+
+  for(
+    const file of files
+  ){
+
+    if(
+      !file.type.startsWith(
+        "image/"
+      )
+    ){
+      continue;
+    }
+
+
+    toast(
+      "Saving photo..."
+    );
+
+
+    const blob =
+      await compressImage(
+        file
+      );
+
+
+    await saveOne(
+      "photos",
+      {
+
+        id:uid(),
+
+        ownerType,
+
+        ownerId,
+
+        blob,
+
+        createdAt:
+          Date.now()
+      }
+    );
+  }
+
+
+  toast(
+    "Photo saved"
+  );
+
+
+  render();
+}
+
+
+/* ============================================================
+   SAVE CUSTOMER
+============================================================ */
+
+async function saveCustomer(
+  form
+){
+
+  const fd =
+    new FormData(
+      form
+    );
+
+
+  const id =
+    fd.get("id");
+
+
+  const existing =
+    await customerById(id);
+
+
+  const object = {
+
+    id,
+
+    name:
+      String(
+        fd.get("name") ||
+        ""
+      ).trim(),
+
+    phones:
+      fd.getAll("phone")
+        .map(
+          p =>
+            String(p)
+              .trim()
+        )
+        .filter(Boolean),
+
+    email:
+      String(
+        fd.get("email") ||
+        ""
+      ).trim(),
+
+    address:
+      String(
+        fd.get("address") ||
+        ""
+      ).trim(),
+
+    notes:
+      String(
+        fd.get("notes") ||
+        ""
+      ).trim(),
+
+    createdAt:
+      existing?.createdAt ||
+      Date.now(),
+
+    updatedAt:
+      Date.now()
+  };
+
+
+  if(!object.name){
+
+    alert(
+      "Please enter customer name."
+    );
+
+    return;
+  }
+
+
+  await saveOne(
+    "customers",
+    object
+  );
+
+
+  toast(
+    existing
+    ? "Customer updated"
+    : "Customer added"
+  );
+
+
+  go(
+    "customer",
+    {id}
+  );
+}
+
+
+/* ============================================================
+   SAVE VEHICLE
+============================================================ */
+
+async function saveVehicle(
+  form
+){
+
+  const fd =
+    new FormData(
+      form
+    );
+
+
+  const id =
+    fd.get("id");
+
+
+  const existing =
+    await vehicleById(id);
+
+
+  const object = {
+
+    id,
+
+    customerId:
+      fd.get(
+        "customerId"
+      ),
+
+    rego:
+      String(
+        fd.get("rego") ||
+        ""
+      )
+      .trim()
+      .toUpperCase(),
+
+    make:
+      String(
+        fd.get("make") ||
+        ""
+      ).trim(),
+
+    model:
+      String(
+        fd.get("model") ||
+        ""
+      ).trim(),
+
+    year:
+      fd.get("year"),
+
+    color:
+      String(
+        fd.get("color") ||
+        ""
+      ).trim(),
+
+    vin:
+      String(
+        fd.get("vin") ||
+        ""
+      ).trim(),
+
+    odometer:
+      fd.get("odometer"),
+
+    notes:
+      String(
+        fd.get("notes") ||
+        ""
+      ).trim(),
+
+    createdAt:
+      existing?.createdAt ||
+      Date.now(),
+
+    updatedAt:
+      Date.now()
+  };
+
+
+  await saveOne(
+    "vehicles",
+    object
+  );
+
+
+  toast(
+    existing
+    ? "Vehicle updated"
+    : "Vehicle added"
+  );
+
+
+  go(
+    "customer",
+    {
+      id:
+        object.customerId
+    }
+  );
+}
+
+
+/* ============================================================
+   SAVE SERVICE RECORD
+============================================================ */
+
+async function saveRecord(
+  form
+){
+
+  const fd =
+    new FormData(
+      form
+    );
+
+
+  const id =
+    fd.get("id");
+
+
+  const existing =
+    await recordById(id);
+
+
+  const vehicleId =
+    fd.get(
+      "vehicleId"
+    );
+
+
+  const vehicle =
+    await vehicleById(
+      vehicleId
+    );
+
+
+  if(!vehicle){
+    return;
+  }
+
+
+  const object = {
+
+    id,
+
+    vehicleId,
+
+    customerId:
+      vehicle.customerId,
+
+    date:
+      fd.get("date"),
+
+    odometerAtVisit:
+      fd.get(
+        "odometerAtVisit"
+      ),
+
+    serviceType:
+      String(
+        fd.get(
+          "serviceType"
+        ) ||
+        ""
+      ).trim(),
+
+    quoteDetails:
+      String(
+        fd.get(
+          "quoteDetails"
+        ) ||
+        ""
+      ).trim(),
+
+    quoteAmount:
+      fd.get(
+        "quoteAmount"
+      ),
+
+    workDone:
+      String(
+        fd.get(
+          "workDone"
+        ) ||
+        ""
+      ).trim(),
+
+    amountPaid:
+      fd.get(
+        "amountPaid"
+      ),
+
+    paymentMethod:
+      fd.get(
+        "paymentMethod"
+      ),
+
+    paymentStatus:
+      fd.get(
+        "paymentStatus"
+      ),
+
+    invoiceNumber:
+      String(
+        fd.get(
+          "invoiceNumber"
+        ) ||
+        ""
+      ).trim(),
+
+    pendingWork:
+      String(
+        fd.get(
+          "pendingWork"
+        ) ||
+        ""
+      ).trim(),
+
+    nextServiceDate:
+      fd.get(
+        "nextServiceDate"
+      ),
+
+    nextServiceKm:
+      fd.get(
+        "nextServiceKm"
+      ),
+
+    technicianNotes:
+      String(
+        fd.get(
+          "technicianNotes"
+        ) ||
+        ""
+      ).trim(),
+
+    createdAt:
+      existing?.createdAt ||
+      Date.now(),
+
+    updatedAt:
+      Date.now()
+  };
+
+
+  await saveOne(
+    "records",
+    object
+  );
+
+
+  if(
+    object.odometerAtVisit
+
+    &&
+
+    (
+      !vehicle.odometer
+
+      ||
+
+      Number(
+        object.odometerAtVisit
+      )
+      >
+      Number(
+        vehicle.odometer
+      )
+    )
+  ){
+
+    vehicle.odometer =
+      object.odometerAtVisit;
+
+
+    vehicle.updatedAt =
+      Date.now();
+
+
+    await saveOne(
+      "vehicles",
+      vehicle
+    );
+  }
+
+
+  toast(
+    existing
+    ? "Service visit updated"
+    : "Service visit saved"
+  );
+
+
+  go(
+    "vehicle",
+    {
+      id:
+        vehicleId
+    }
+  );
+}
+
+
+/* ============================================================
+   BACKUP
+============================================================ */
+
+function blobToDataURL(blob){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        () =>
+          resolve(
+            reader.result
+          );
+
+
+      reader.onerror =
+        () =>
+          reject(
+            reader.error
+          );
+
+
+      reader.readAsDataURL(
+        blob
+      );
+    }
+  );
+}
+
+
+async function dataURLToBlob(
+  dataURL
+){
+
+  const [
+    header,
+    base64
+  ] =
+    dataURL.split(",");
+
+
+  const mime =
+    (
+      header.match(
+        /data:(.*?);base64/
+      )
+      ||
+      []
+    )[1]
+    ||
+    "image/jpeg";
+
+
+  const bytes =
+    Uint8Array.from(
+      atob(base64),
+      c =>
+        c.charCodeAt(0)
+    );
+
+
+  return new Blob(
+    [bytes],
+    {
+      type:mime
+    }
+  );
+}
+
+
+async function makeBackup(){
+
+  toast(
+    "Preparing backup..."
+  );
+
+
+  const [
+    customers,
+    vehicles,
+    records,
+    photos
+  ] =
+    await Promise.all([
+      getAll("customers"),
+      getAll("vehicles"),
+      getAll("records"),
+      getAll("photos")
+    ]);
+
+
+  const exportedPhotos =
+    [];
+
+
+  for(
+    const photo of photos
+  ){
+
+    exportedPhotos.push({
+
+      id:
+        photo.id,
+
+      ownerType:
+        photo.ownerType,
+
+      ownerId:
+        photo.ownerId,
+
+      createdAt:
+        photo.createdAt,
+
+      data:
+        await blobToDataURL(
+          photo.blob
+        )
+    });
+  }
+
+
+  const payload = {
+
+    app:
+      "adya-car-care",
+
+    version:
+      1,
+
+    exportedAt:
+      new Date()
+        .toISOString(),
+
+    customers,
+
+    vehicles,
+
+    records,
+
+    photos:
+      exportedPhotos
+  };
+
+
+  const file =
+    new File(
+      [
+        JSON.stringify(
+          payload
+        )
+      ],
+      `Adya-Car-Care-Backup-${todayStr()}.json`,
+      {
+        type:
+          "application/json"
+      }
+    );
+
+
+  try{
+
+    if(
+      navigator.canShare &&
+      navigator.canShare({
+        files:[file]
+      })
+    ){
+
+      await navigator.share({
+
+        title:
+          "Adya Car Care Backup",
+
+        text:
+          "Save this backup to Google Drive.",
+
+        files:[
+          file
+        ]
+      });
+
+    }else{
+
+      downloadBackup(
+        file
+      );
+    }
+
+
+    await setSetting(
+      "lastBackup",
+      new Date()
+        .toISOString()
+    );
+
+
+    toast(
+      "Backup created"
+    );
+
+  }catch(error){
+
+    if(
+      error.name !==
+      "AbortError"
+    ){
+
+      downloadBackup(
+        file
+      );
+    }
+  }
+}
+
+
+function downloadBackup(
+  file
+){
+
+  const url =
+    URL.createObjectURL(
+      file
+    );
+
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+
+  link.href =
+    url;
+
+
+  link.download =
+    file.name;
+
+
+  document.body
+    .appendChild(
+      link
+    );
+
+
+  link.click();
+
+
+  link.remove();
+
+
+  setTimeout(
+    () =>
+      URL.revokeObjectURL(
+        url
+      ),
+    1000
+  );
+}
+
+
+/* ============================================================
+   RESTORE
+============================================================ */
+
+async function restoreBackup(
+  file
+){
+
+  try{
+
+    const data =
+      JSON.parse(
+        await file.text()
+      );
+
+
+    if(
+      !Array.isArray(
+        data.customers
+      )
+
+      ||
+
+      !Array.isArray(
+        data.vehicles
+      )
+
+      ||
+
+      !Array.isArray(
+        data.records
+      )
+
+      ||
+
+      !Array.isArray(
+        data.photos
+      )
+    ){
+
+      throw new Error(
+        "Invalid Adya Car Care backup."
+      );
+    }
+
+
+    if(
+      !confirm(
+
+        "Restore this backup?\n\nThis replaces the local database currently stored on this iPhone."
+      )
+    ){
+
+      return;
+    }
+
+
+    await clearStore(
+      "customers"
+    );
+
+    await clearStore(
+      "vehicles"
+    );
+
+    await clearStore(
+      "records"
+    );
+
+    await clearStore(
+      "photos"
+    );
+
+
+    for(
+      const customer of
+      data.customers
+    ){
+
+      await saveOne(
+        "customers",
+        customer
+      );
+    }
+
+
+    for(
+      const vehicle of
+      data.vehicles
+    ){
+
+      await saveOne(
+        "vehicles",
+        vehicle
+      );
+    }
+
+
+    for(
+      const record of
+      data.records
+    ){
+
+      await saveOne(
+        "records",
+        record
+      );
+    }
+
+
+    for(
+      const photo of
+      data.photos
+    ){
+
+      await saveOne(
+        "photos",
+        {
+
+          id:
+            photo.id,
+
+          ownerType:
+            photo.ownerType,
+
+          ownerId:
+            photo.ownerId,
+
+          createdAt:
+            photo.createdAt,
+
+          blob:
+            await dataURLToBlob(
+              photo.data
+            )
+        }
+      );
+    }
+
+
+    toast(
+      "Backup restored"
+    );
+
+
+    go(
+      "home"
+    );
+
+  }catch(error){
+
+    alert(
+
+      "Could not restore backup.\n\n"
+
+      +
+
+      (
+        error.message ||
+        error
+      )
+    );
+  }
+}
+
+
+/* ============================================================
+   DATA PAGE
+============================================================ */
+
+async function viewData(){
+
+  const [
+    customers,
+    vehicles,
+    records,
+    photos
+  ] =
+    await Promise.all([
+      getAll("customers"),
+      getAll("vehicles"),
+      getAll("records"),
+      getAll("photos")
+    ]);
+
+
+  const lastBackup =
+    await setting(
+      "lastBackup",
+      null
+    );
+
+
+  return `
+
+    ${header()}
+
+
+    <main>
+
+      <div class="page-title-row">
+
+        <div>
+
+          <h2 class="page-title">
+            Data &amp; Backup
+          </h2>
+
+          <div class="page-sub">
+            iPhone local database + Google Drive backup
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="notice">
+
+        <b>
+          Works offline.
+        </b>
+
+        <br>
+
+        Customer, vehicle, job and photo data
+        is stored locally on this iPhone.
+
+        Use Backup while connected to Wi-Fi
+        and save the generated file to Google Drive.
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>
+          Local Database
+        </h3>
+
+        <p>
+
+          <b>${customers.length}</b>
+          customers
+
+          ·
+
+          <b>${vehicles.length}</b>
+          vehicles
+
+          ·
+
+          <b>${records.length}</b>
+          jobs
+
+          ·
+
+          <b>${photos.length}</b>
+          photos
+
+        </p>
+
+
+        <p>
+
+          <b>
+            Last backup:
+          </b>
+
+          ${fmtDateTime(
+            lastBackup
+          )}
+
+        </p>
+
+
+        <button
+          class="btn"
+          data-action="backup"
+        >
+          ☁ Backup to Google Drive
+        </button>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>
+          Restore
+        </h3>
+
+        <p>
+
+          Choose an Adya Car Care backup
+          from Files or Google Drive.
+
+        </p>
+
+
+        <button
+          class="btn secondary"
+          data-action="restore"
+        >
+          Restore from Backup
+        </button>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>
+          Testing / Reset
+        </h3>
+
+        <p>
+
+          This deletes the working database
+          from this iPhone.
+
+          Your Google Drive backup will not
+          be touched.
+
+        </p>
+
+
+        <button
+          class="btn danger"
+          data-action="erase-local"
+        >
+          Erase Local Data
+        </button>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>
+          Recommended Routine
+        </h3>
+
+        <p>
+
+          At the end of your work day:
+
+          <br><br>
+
+          connect to Wi-Fi
+
+          → open Adya Car Care
+
+          → Data
+
+          → Backup to Google Drive
+
+          → save into your Adya Car Care
+          Backups folder.
+
+        </p>
+
+      </div>
+
+    </main>
+
+
+    ${tabs("data")}
+  `;
+}
+
+
+/* ============================================================
+   ERASE LOCAL DATABASE
+============================================================ */
+
+async function eraseLocalData(){
+
+  if(
+    !confirm(
+
+      "Erase ALL local Adya Car Care data from this iPhone?\n\nOnly do this for testing or after confirming you have a backup."
+    )
+  ){
+    return;
+  }
+
+
+  if(
+    !confirm(
+
+      "Final confirmation:\n\nErase customers, vehicles, jobs and photos from this iPhone?"
+    )
+  ){
+    return;
+  }
+
+
+  await clearStore(
+    "customers"
+  );
+
+  await clearStore(
+    "vehicles"
+  );
+
+  await clearStore(
+    "records"
+  );
+
+  await clearStore(
+    "photos"
+  );
+
+
+  toast(
+    "Local data erased"
+  );
+
+
+  go(
+    "home"
+  );
+}
+
+
+/* ============================================================
+   DELETE HELPERS
+============================================================ */
+
+async function deleteOwnerPhotos(
+  type,
+  ownerId
+){
+
+  const photos =
+    await ownerPhotos(
+      type,
+      ownerId
+    );
+
+
+  for(
+    const photo of photos
+  ){
+
+    await deleteOne(
+      "photos",
+      photo.id
+    );
+  }
+}
+
+
+async function deleteCustomer(id){
+
+  if(
+    !confirm(
+      "Delete this customer, their vehicles, jobs and photos?"
+    )
+  ){
+    return;
+  }
+
+
+  const vehicles =
+    (
+      await getAll(
+        "vehicles"
+      )
+    )
+    .filter(
+      v =>
+        v.customerId ===
+        id
+    );
+
+
+  for(
+    const vehicle of vehicles
+  ){
+
+    await deleteVehicleData(
+      vehicle.id
+    );
+  }
+
+
+  await deleteOwnerPhotos(
+    "customer",
+    id
+  );
+
+
+  await deleteOne(
+    "customers",
+    id
+  );
+
+
+  toast(
+    "Customer deleted"
+  );
+
+
+  go(
+    "customers"
+  );
+}
+
+
+async function deleteVehicleData(id){
+
+  const records =
+    (
+      await getAll(
+        "records"
+      )
+    )
+    .filter(
+      r =>
+        r.vehicleId ===
+        id
+    );
+
+
+  for(
+    const record of records
+  ){
+
+    await deleteOwnerPhotos(
+      "record",
+      record.id
+    );
+
+
+    await deleteOne(
+      "records",
+      record.id
+    );
+  }
+
+
+  await deleteOwnerPhotos(
+    "vehicle",
+    id
+  );
+
+
+  await deleteOne(
+    "vehicles",
+    id
+  );
+}
+
+
+async function deleteVehicle(id){
+
+  const vehicle =
+    await vehicleById(id);
+
+
+  if(
+    !vehicle ||
+    !confirm(
+      "Delete this vehicle, service history and photos?"
+    )
+  ){
+    return;
+  }
+
+
+  await deleteVehicleData(
+    id
+  );
+
+
+  toast(
+    "Vehicle deleted"
+  );
+
+
+  go(
+    "customer",
+    {
+      id:
+        vehicle.customerId
+    }
+  );
+}
+
+
+async function deleteRecord(id){
+
+  const record =
+    await recordById(id);
+
+
+  if(
+    !record ||
+    !confirm(
+      "Delete this service record and its photos?"
+    )
+  ){
+    return;
+  }
+
+
+  await deleteOwnerPhotos(
+    "record",
+    id
+  );
+
+
+  await deleteOne(
+    "records",
+    id
+  );
+
+
+  toast(
+    "Service record deleted"
+  );
+
+
+  go(
+    "vehicle",
+    {
+      id:
+        record.vehicleId
+    }
+  );
+}
+
+
+/* ============================================================
+   EVENT BINDING
+============================================================ */
+
+function bindViewEvents(){
+
+
+  document
+    .getElementById(
+      "homeSearch"
+    )
+    ?.addEventListener(
+      "input",
+      async event => {
+
+        const q =
+          event.target.value
+            .trim()
+            .toLowerCase();
+
+
+        const cards =
+          app.querySelectorAll(
+            ".card"
+          );
+
+
+        if(!q){
+
+          cards.forEach(
+            card =>
+              card.style.display =
+                ""
+          );
+
+          return;
+        }
+
+
+        const [
+          customers,
+          vehicles
+        ] =
+          await Promise.all([
+            getAll("customers"),
+            getAll("vehicles")
+          ]);
+
+
+        const compact =
+          q.replace(
+            /\s/g,
+            ""
+          );
+
+
+        const ids =
+          new Set();
+
+
+        customers.forEach(
+          customer => {
+
+            if(
+
+              (
+                customer.name ||
+                ""
+              )
+              .toLowerCase()
+              .includes(q)
+
+              ||
+
+              (
+                customer.phones ||
+                []
+              )
+              .some(
+                p =>
+                  String(p)
+                    .replace(
+                      /\s/g,
+                      ""
+                    )
+                    .includes(
+                      compact
+                    )
+              )
+            ){
+
+              ids.add(
+                customer.id
+              );
+            }
+          }
+        );
+
+
+        vehicles.forEach(
+          vehicle => {
+
+            if(
+              (
+                vehicle.rego ||
+                ""
+              )
+              .toLowerCase()
+              .replace(
+                /\s/g,
+                ""
+              )
+              .includes(
+                compact
+              )
+            ){
+
+              ids.add(
+                vehicle.customerId
+              );
+            }
+          }
+        );
+
+
+        go(
+          "customers",
+          {
+            search:q,
+            ids:[
+              ...ids
+            ]
+          }
+        );
+      }
+    );
+
+
+  document
+    .getElementById(
+      "customerSearch"
+    )
+    ?.addEventListener(
+      "input",
+      event => {
+
+        const q =
+          event.target.value
+            .toLowerCase();
+
+
+        document
+          .querySelectorAll(
+            ".card"
+          )
+          .forEach(
+            card => {
+
+              card.style.display =
+                card.textContent
+                  .toLowerCase()
+                  .includes(q)
+
+                ? ""
+
+                : "none";
+            }
+          );
+      }
+    );
+
+
+  document
+    .getElementById(
+      "recordSearch"
+    )
+    ?.addEventListener(
+      "input",
+      event => {
+
+        const q =
+          event.target.value
+            .toLowerCase();
+
+
+        document
+          .querySelectorAll(
+            "[data-job-search]"
+          )
+          .forEach(
+            card => {
+
+              card.style.display =
+                (
+                  card.dataset
+                    .jobSearch ||
+                  ""
+                )
+                .includes(q)
+
+                ? ""
+
+                : "none";
+            }
+          );
+      }
+    );
+
+
+  const addPhone =
+    document.getElementById(
+      "addPhoneBtn"
+    );
+
+
+  if(addPhone){
+
+    addPhone
+      .addEventListener(
+        "click",
+        () => {
+
+          const row =
+            document.createElement(
+              "div"
+            );
+
+
+          row.className =
+            "multi";
+
+
+          row.innerHTML = `
+
+            <input
+              type="tel"
+              name="phone"
+              placeholder="04xx xxx xxx"
+            >
+
+            <button
+              type="button"
+              class="iconbtn"
+              data-action="remove-phone-row"
+            >
+              −
+            </button>
+          `;
+
+
+          document
+            .getElementById(
+              "phoneList"
+            )
+            .appendChild(
+              row
+            );
+        }
+      );
+  }
+
+
+  document
+    .getElementById(
+      "customerForm"
+    )
+    ?.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+        saveCustomer(
+          event.target
+        );
+      }
+    );
+
+
+  document
+    .getElementById(
+      "vehicleForm"
+    )
+    ?.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+        saveVehicle(
+          event.target
+        );
+      }
+    );
+
+
+  document
+    .getElementById(
+      "recordForm"
+    )
+    ?.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+        saveRecord(
+          event.target
+        );
+      }
+    );
+}
+
+
+/* ============================================================
+   GLOBAL CLICK EVENTS
+============================================================ */
+
+app.addEventListener(
+  "click",
+  async event => {
+
+    const el =
+      event.target.closest(
+        "[data-action]"
+      );
+
+
+    if(!el){
+      return;
+    }
+
+
+    const action =
+      el.dataset.action;
+
+
+    if(
+      action === "nav"
+    ){
+
+      go(
+        el.dataset.view,
+        JSON.parse(
+          el.dataset.params ||
+          "{}"
+        )
+      );
+
+    }else if(
+      action === "new-customer"
+    ){
+
+      go(
+        "customerForm"
+      );
+
+    }else if(
+      action === "open-customer"
+    ){
+
+      go(
+        "customer",
+        {
+          id:
+            el.dataset.id
+        }
+      );
+
+    }else if(
+      action === "open-vehicle"
+    ){
+
+      go(
+        "vehicle",
+        {
+          id:
+            el.dataset.id
+        }
+      );
+
+    }else if(
+      action === "edit-customer"
+    ){
+
+      go(
+        "customerForm",
+        {
+          id:
+            el.dataset.id
+        }
+      );
+
+    }else if(
+      action === "add-vehicle"
+    ){
+
+      go(
+        "vehicleForm",
+        {
+          customerId:
+            el.dataset.id
+        }
+      );
+
+    }else if(
+      action === "edit-vehicle"
+    ){
+
+      go(
+        "vehicleForm",
+        {
+          id:
+            el.dataset.id
+        }
+      );
+
+    }else if(
+      action === "add-record"
+    ){
+
+      go(
+        "recordForm",
+        {
+          vehicleId:
+            el.dataset.id
+        }
+      );
+
+    }else if(
+      action === "edit-record"
+    ){
+
+      go(
+        "recordForm",
+        {
+          id:
+            el.dataset.id,
+          vehicleId:
+            el.dataset.vid
+        }
+      );
+
+    }else if(
+      action === "remove-phone-row"
+    ){
+
+      el.closest(
+        ".multi"
+      )?.remove();
+
+    }else if(
+      action === "take-photo"
+      ||
+      action === "choose-photo"
+    ){
+
+      photoTarget = {
+
+        ownerType:
+          el.dataset.ownerType,
+
+        ownerId:
+          el.dataset.ownerId
+      };
+
+
+      const input =
+        document.getElementById(
+          "photoInput"
+        );
+
+
+      if(
+        action ===
+        "take-photo"
+      ){
+
+        input.setAttribute(
+          "capture",
+          "environment"
+        );
+
+      }else{
+
+        input.removeAttribute(
+          "capture"
+        );
+      }
+
+
+      input.click();
+
+    }else if(
+      action === "delete-photo"
+    ){
+
+      if(
+        confirm(
+          "Delete this photo?"
+        )
+      ){
+
+        await deleteOne(
+          "photos",
+          el.dataset.photoId
+        );
+
+
+        render();
+      }
+
+    }else if(
+      action === "view-photo"
+    ){
+
+      const modal =
+        document.createElement(
+          "div"
+        );
+
+
+      modal.className =
+        "modal";
+
+
+      modal.innerHTML = `
+
+        <button
+          class="modal-close"
+        >
+          ×
+        </button>
+
+        <img
+          src="${el.getAttribute("src")}"
+        >
+      `;
+
+
+      modal.addEventListener(
+        "click",
+        e => {
+
+          if(
+            e.target === modal
+
+            ||
+
+            e.target
+              .classList
+              .contains(
+                "modal-close"
+              )
+          ){
+
+            modal.remove();
+          }
+        }
+      );
+
+
+      document.body
+        .appendChild(
+          modal
+        );
+
+    }else if(
+      action === "backup"
+    ){
+
+      await makeBackup();
+
+    }else if(
+      action === "restore"
+    ){
+
+      document
+        .getElementById(
+          "importFile"
+        )
+        .click();
+
+    }else if(
+      action === "erase-local"
+    ){
+
+      await eraseLocalData();
+
+    }else if(
+      action === "delete-customer"
+    ){
+
+      await deleteCustomer(
+        el.dataset.id
+      );
+
+    }else if(
+      action === "delete-vehicle"
+    ){
+
+      await deleteVehicle(
+        el.dataset.id
+      );
+
+    }else if(
+      action === "delete-record"
+    ){
+
+      await deleteRecord(
+        el.dataset.id
+      );
+    }
+  }
+);
+
+
+/* ============================================================
+   PHOTO INPUT
+============================================================ */
+
+document
+  .getElementById(
+    "photoInput"
+  )
+  .addEventListener(
+    "change",
+    async event => {
+
+      if(
+        photoTarget &&
+        event.target.files?.length
+      ){
+
+        await savePhotos(
+
+          [...event.target.files],
+
+          photoTarget.ownerType,
+
+          photoTarget.ownerId
+        );
+      }
+
+
+      event.target.value =
+        "";
+
+
+      photoTarget =
+        null;
+    }
+  );
+
+
+/* ============================================================
+   RESTORE INPUT
+============================================================ */
+
+document
+  .getElementById(
+    "importFile"
+  )
+  .addEventListener(
+    "change",
+    async event => {
+
+      const file =
+        event.target.files?.[0];
+
+
+      if(file){
+
+        await restoreBackup(
+          file
+        );
+      }
+
+
+      event.target.value =
+        "";
+    }
+  );
+
+
+/* ============================================================
+   SERVICE WORKER
+============================================================ */
+
+if(
+  "serviceWorker" in navigator
+){
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      navigator.serviceWorker
+        .register(
+          "./sw.js"
+        )
+        .catch(
+          console.error
+        );
+    }
+  );
+}
+
+
+/* ============================================================
+   START
+============================================================ */
+
+(async function(){
+
+  await openDB();
+
+  await render();
+
+})();
+</script>
+
+</body>
+</html>
